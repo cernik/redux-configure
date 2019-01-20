@@ -1,0 +1,24 @@
+{
+  "name": "redux-configure",
+  "version": "1.0.0",
+  "description": "Utility to create default redux structure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "redux",
+    "structure",
+    "actions"
+  ],
+  "dependencies": {
+    "axios": "^0.18.0",
+    "mag-service-registry": "^3.0.5",
+    "redux": "^4.0.1",
+    "react-redux": "^6.0.0",
+    "redux-axios-middleware": "^4.0.0",
+    "redux-logger": "^3.0.6"
+  },
+  "author": "ateqai",
+  "license": "MIT"
+}
