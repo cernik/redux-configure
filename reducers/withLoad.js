@@ -1,6 +1,7 @@
 // @flow
 export const withLoad = types => (state, action) => {
   {
+    console.log('withLoad');
     let nextState = state;
     switch (action.type) {
       case types.LOAD: {

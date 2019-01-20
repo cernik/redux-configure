@@ -1,26 +1,56 @@
 {
-  "name": "redux-configure",
-  "version": "1.0.0",
-  "description": "Utility to create default redux structure",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "_from": "git+https://github.com/cernik/redux-configure.git",
+  "_id": "redux-configure@1.0.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/redux-configure",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "redux-configure@git+https://github.com/cernik/redux-configure.git",
+    "name": "redux-configure",
+    "escapedName": "redux-configure",
+    "rawSpec": "git+https://github.com/cernik/redux-configure.git",
+    "saveSpec": "git+https://github.com/cernik/redux-configure.git",
+    "fetchSpec": "https://github.com/cernik/redux-configure.git",
+    "gitCommittish": null
   },
-  "keywords": [
-    "redux",
-    "structure",
-    "actions"
+  "_requiredBy": [
+    "/"
   ],
+  "_resolved": "git+https://github.com/cernik/redux-configure.git#c5d487d12b5c8f10a15b426201e4cce72a74c01e",
+  "_spec": "redux-configure@git+https://github.com/cernik/redux-configure.git",
+  "_where": "/Users/milas/Documents/Projects/sweetinn",
+  "author": {
+    "name": "ateqai"
+  },
+  "bundleDependencies": false,
   "dependencies": {
     "axios": "^0.18.0",
     "mag-service-registry": "^3.0.5",
-    "react": "^16.7.0",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
     "redux-axios-middleware": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0"
   },
-  "author": "ateqai",
-  "license": "MIT"
+  "deprecated": false,
+  "description": "Utility to create default redux structure",
+  "keywords": [
+    "redux",
+    "structure",
+    "actions"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "redux-configure",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "printWidth": 80
+  },
+  "version": "1.0.0"
 }

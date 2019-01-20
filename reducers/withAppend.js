@@ -1,6 +1,7 @@
 // @flow
 export const withAppend = types => (state, action) => {
   {
+    console.log('withAppend');
     let nextState = state;
     switch (action.type) {
       case types.APPEND: {

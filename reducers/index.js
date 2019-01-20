@@ -11,7 +11,7 @@ export const defaultInitialState = {
   errorMessage: '',
 };
 
-const pipeReducers = (...fns) => (state, action) =>
+export const pipeReducers = (...fns) => (state, action) =>
   fns.reduce((v, fn) => fn(v, action), state);
 
 export const configureReducer = (types = {}) => (
@@ -25,9 +25,11 @@ export const configureReducer = (types = {}) => (
 ) =>
   pipeReducers(
     ...reducers.map(fn => {
-      if (typeof fn() === 'object') {
-        return fn;
-      }
+      // if (typeof fn() === 'object') {
+      //   return fn;
+      // }
+      // console.log('fn',fn);
+      // console.log('');
       return fn(types);
     })
   )(state, action);
