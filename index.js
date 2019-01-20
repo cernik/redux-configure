@@ -8,13 +8,14 @@ import {
   withCreate,
   withUpdate,
   withDelete,
+  withAppend,
 } from './reducers';
 
 export { connect } from 'redux';
 export { Provider } from 'react-redux';
 
-export { configureMiddlewares, withAxios, withLogger } from './middleware';
-export { configureStore } from './store';
+export { configureMiddlewares, withAxios, withAxiosMultiClient, withLogger } from './middleware';
+export { configureStore, configureStoreWithPersistStore } from './store';
 
 export const reduxContext = context;
 
@@ -39,10 +40,10 @@ const createModules = reducers =>
 
 export const configureModules = (config = {}) => {
   const modules = createModules(config);
-  // const services = extractServices(modules);
+
   const actions = extractActions(modules);
-  console.log('actions', actions);
-  // context.registerServices(services);
+
+
   context.registerActions(actions);
 
   return {
@@ -59,4 +60,5 @@ export {
   withCreate,
   withUpdate,
   withDelete,
+  withAppend,
 };

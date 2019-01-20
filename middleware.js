@@ -1,7 +1,7 @@
 // @flow
 import { createLogger } from 'redux-logger';
 import axios from 'axios';
-import createAxiosMiddleware from 'redux-axios-middleware';
+import createAxiosMiddleware, { multiClientMiddleware } from 'redux-axios-middleware';
 
 export const axiosClient = (
   clientConfig = { baseURL: 'http://localhost:8081' }
@@ -30,8 +30,22 @@ export default [__DEV__ && logger(), axiosMiddleware()].filter(Boolean);
 export const withAxios = (client = {}, options = {}) => (middlewares = []) =>
   middlewares.concat([axiosMiddleware(client, options)]);
 
+const createClients = (clients = {}, options) => {
+  return Object.keys(clients).reduce((acc, name) => {
+    const client = axiosClient(clients[name]);
+    return {...acc, [name]: { client }}
+  } ,{});
+}
+
+export const withAxiosMultiClient = (clients = {}, options = {} ) => (middlewares = []) =>{
+  const axiosClients = createClients(clients, options);
+  return  middlewares.concat([multiClientMiddleware(axiosClients, options)]);
+}
+
 export const withLogger = (options = {}) => (middlewares = []) =>
   middlewares.concat([logger(options)]);
 
-export const configureMiddlewares = (...fns) => (middlewares = []) =>
-  fns.reduce((acc, fn) => fn(acc), middlewares);
+export const configureMiddlewares = (...fns) => (middlewares = []) =>{
+
+  return fns.reduce((acc, fn) => fn(acc), middlewares);
+}

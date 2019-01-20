@@ -3,6 +3,7 @@ export { withLoad } from './withLoad';
 export { withCreate } from './withCreate';
 export { withUpdate } from './withUpdate';
 export { withDelete } from './withDelete';
+export { withAppend } from './withAppend';
 
 export const defaultInitialState = {
   data: [],
