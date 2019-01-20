@@ -1,17 +1,17 @@
 // @flow
-export const withLoad = types => (state, action) => {
+export const withAppend = types => (state, action) => {
   {
-    console.log('withLoad');
+    console.log('withAppend');
     let nextState = state;
     switch (action.type) {
-      case types.LOAD: {
+      case types.APPEND: {
         nextState = {
           ...state,
           isFetching: true,
         };
         break;
       }
-      case types.LOAD_SUCCESS: {
+      case types.APPEND_SUCCESS: {
         if (action.payload.data) {
           let nextData;
           if (Array.isArray(action.payload.data)) {
@@ -21,13 +21,13 @@ export const withLoad = types => (state, action) => {
           }
           nextState = {
             ...state,
-            data: nextData,
+            data: (state.data || []).concat(nextData),
             isFetching: false,
           };
         }
         break;
       }
-      case types.LOAD_FAIL: {
+      case types.APPEND_FAIL: {
         nextState = {
           ...state,
           isFetching: false,

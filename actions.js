@@ -25,3 +25,32 @@ export const initActions = name => (actionNames = [], extraActions = {}) =>
     }),
     extraActions
   );
+
+export const configureActionTypes = actions =>
+  Object.keys(actions).reduce(
+    (acc, reducerName) => ({
+      ...acc,
+      [reducerName]: createActionTypes(reducerName)(
+        Object.keys(actions[reducerName])
+      ),
+    }),
+    {}
+  );
+/*
+configureActionTypes = ({})=>({})
+get
+{
+  repos: {
+    load: ()=>{}
+  }
+}
+
+returns
+{
+  repos: {
+    LOAD: 'repos/LOAD',
+    LOAD_SUCCESS: 'repos/LOAD_SUCCESS',
+    LOAD_FAIL: 'repos/LOAD_FAIL',
+  }
+}
+*/

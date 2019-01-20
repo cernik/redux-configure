@@ -1,20 +1,30 @@
 // @flow
 import { extractServices, extractActions, extractReducers } from './extract';
 import { context } from './context';
-import { createActionTypes, initActions } from './actions';
+import {
+  createActionTypes,
+  configureActionTypes,
+  initActions,
+} from './actions';
 import {
   configureReducer,
   withLoad,
   withCreate,
   withUpdate,
   withDelete,
+  withAppend,
+  pipeReducers,
 } from './reducers';
 
 export { connect } from 'redux';
-export { Provider } from 'react-redux';
 
-export { configureMiddlewares, withAxios, withLogger } from './middleware';
-export { configureStore } from './store';
+export {
+  configureMiddlewares,
+  withAxios,
+  withAxiosMultiClient,
+  withLogger,
+} from './middleware';
+export { configureStore, configureStoreWithPersistStore } from './store';
 
 export const reduxContext = context;
 
@@ -23,10 +33,9 @@ const configureModule = name => config => {
   const actionTypes = createActionTypes(name)(actionNames);
   const actions = initActions(name)(actionNames, config.actions(actionTypes));
 
-  const reducer = configureReducer(actionTypes)(
-    config.initialReducer,
-    ...config.reducers
-  )(config.initialState);
+  const reducer = configureReducer(actionTypes)(...config.reducers)(
+    config.initialState
+  );
 
   return { actions, reducer, types: actionTypes };
 };
@@ -39,10 +48,9 @@ const createModules = reducers =>
 
 export const configureModules = (config = {}) => {
   const modules = createModules(config);
-  // const services = extractServices(modules);
+
   const actions = extractActions(modules);
-  console.log('actions', actions);
-  // context.registerServices(services);
+
   context.registerActions(actions);
 
   return {
@@ -54,9 +62,12 @@ export const configureModules = (config = {}) => {
 
 export {
   createActionTypes,
+  configureActionTypes,
   configureReducer,
   withLoad,
   withCreate,
   withUpdate,
   withDelete,
+  withAppend,
+  pipeReducers,
 };
